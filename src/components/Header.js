@@ -1,4 +1,5 @@
-import a from "../img/a.jpeg";
+// import a from "../img/a.jpeg";
+import AuthModal from "./Authentation/AuthModal";
 import {
   AppBar,
   Container,
@@ -14,6 +15,7 @@ import {
 } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
+import UserSidebar from "./Authentation/UserSidebar";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -40,7 +42,7 @@ const darkTheme = createTheme({
 
 const Header = () => {
   const classes = useStyles();
-  const { currency, setCurrency } = CryptoState();
+  const { currency, setCurrency, user } = CryptoState();
 
   const history = useHistory();
 
@@ -68,9 +70,11 @@ const Header = () => {
               <MenuItem value={"USD"}>USD</MenuItem>
               <MenuItem value={"INR"}>INR</MenuItem>
             </Select>
-            <Typography>
+            {user ? <UserSidebar /> : <AuthModal />}
+
+            {/* <Typography>
               <img src={a} alt="intezar" className={classes.image} />
-            </Typography>
+            </Typography> */}
           </Toolbar>
         </Container>
       </AppBar>
@@ -79,3 +83,4 @@ const Header = () => {
 };
 
 export default Header;
+//              . .        34:32
